@@ -32,7 +32,7 @@
 
         function geocode(){
 
-            var location = '22 Colombo Road Gampaha';
+            var location = 'Gampaha';
 
             // create request
             axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
@@ -99,7 +99,6 @@
                 // get geometry
                 var lat = response.data.results[0].geometry.location.lat;
                 var long = response.data.results[0].geometry.location.lng;
-                console.log(response.data.results[0].geometry.location.lng);
 
                 // add to html element
                 var geometryOutput = `
