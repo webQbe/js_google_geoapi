@@ -16,10 +16,13 @@
 
     <div class="container">
             <!-- show response -->
-            <div id="formatted-address"></div>
-
+            <div class="card-block" id="formatted-address"></div>
+            
             <!-- show address components -->
-            <div id="address-components"></div>
+            <div class="card-block mt-5" id="address-components"></div>
+
+            <!-- show geometry -->
+            <div class="card-block mt-5" id="geometry"></div>
     </div>
 
     <script>
@@ -46,7 +49,8 @@
                 // log full response
                 console.log(response);
 
-                // Formatted Address
+
+                // FORMATTED ADDRESS
 
                 // get formatted address
                 var formattedAddress = response.data.results[0].formatted_address;
@@ -62,11 +66,12 @@
                 document.getElementById('formatted-address').innerHTML = formattedAddressOutput;
 
                 
-                // Address Components
+
+                // ADDRESS COMPONENTS
 
                 // get address components
                 var addressComponents = response.data.results[0].address_components;
-
+                
                 // add to html element
                 var addressComponentsOutput = '<ul class="list-group">';
                 
@@ -86,6 +91,26 @@
 
                 // output to page
                 document.getElementById('address-components').innerHTML = addressComponentsOutput;
+
+
+
+                // GEOMETRY
+
+                // get geometry
+                var lat = response.data.results[0].geometry.location.lat;
+                var long = response.data.results[0].geometry.location.lng;
+                console.log(response.data.results[0].geometry.location.lng);
+
+                // add to html element
+                var geometryOutput = `
+                    <ul class="list-group">
+                        <li class="list-group-item"><strong>Latitude:</strong> ${lat}</li>
+                        <li class="list-group-item"><strong>Longitude:</strong> ${long}</li>
+                    </ul>
+                `;
+
+                // output to page
+                document.getElementById('geometry').innerHTML = geometryOutput;
 
             })
             .catch(function(error){ // handle errors
