@@ -15,8 +15,17 @@
 <body>
 
     <div class="container">
+
+            <!-- location form -->
+            <h2 id="text-center">Enter Location: </h2>
+            <form id="location-form">
+                <input type="text" id="location-input" class="form-control form-control-lg">
+                <br>
+                <button type="submit" class="btn btn-primary btn-block">Submit</button>
+            </form>
+
             <!-- show response -->
-            <div class="card-block" id="formatted-address"></div>
+            <div class="card-block mt-5" id="formatted-address"></div>
             
             <!-- show address components -->
             <div class="card-block mt-5" id="address-components"></div>
@@ -99,7 +108,7 @@
                 // get geometry
                 var lat = response.data.results[0].geometry.location.lat;
                 var long = response.data.results[0].geometry.location.lng;
-
+                
                 // add to html element
                 var geometryOutput = `
                     <ul class="list-group">
