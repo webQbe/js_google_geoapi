@@ -36,12 +36,18 @@
 
     <script>
 
-        // call geocode()
-        geocode(); 
+        // select location form
+        var locationForm = document.getElementById('location-form'); 
 
-        function geocode(){
+        // listen to submit event
+        locationForm.addEventListener('submit', geocode);
 
-            var location = 'Gampaha';
+        function geocode(e){
+
+            // prevent actual submit
+            e.preventDefault();
+
+            var location = document.getElementById('location-input').value;
 
             // create request
             axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
