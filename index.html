@@ -13,11 +13,15 @@
     <title>My Geocode App</title>
 </head>
 <body>
+
+    <!-- show response -->
+    <div id="formatted-address"></div>
+
     
     <script>
 
         // call geocode()
-        geocode();
+        geocode(); 
 
         function geocode(){
 
@@ -35,7 +39,21 @@
 
             }).then(function(response){ // pass response
 
+                // log full response
                 console.log(response);
+
+                // get formatted address
+                var formattedAddress = response.data.results[0].formatted_address
+
+                // add to html element
+                var formattedAddressOutput = `
+                    <ul class="list-group">
+                        <li class="list-group-item">${formattedAddress}</lli>
+                    </ul>
+                `;
+
+                // output to page
+                document.getElementById('formatted-address').innerHTML = formattedAddressOutput;
 
             })
             .catch(function(error){ // handle errors
