@@ -14,5 +14,38 @@
 </head>
 <body>
     
+    <script>
+
+        // call geocode()
+        geocode();
+
+        function geocode(){
+
+            var location = '22 Colombo Road Gampaha';
+
+            // create request
+            axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
+
+                params:{
+
+                    address: location,
+                    key: '' // api key
+                    
+                }
+
+            }).then(function(response){ // pass response
+
+                console.log(response);
+
+            })
+            .catch(function(error){ // handle errors
+
+                console.log(error);
+
+            })
+
+
+        }
+    </script>
 </body>
 </html>
