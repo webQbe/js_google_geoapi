@@ -14,10 +14,14 @@
 </head>
 <body>
 
-    <!-- show response -->
-    <div id="formatted-address"></div>
+    <div class="container">
+            <!-- show response -->
+            <div id="formatted-address"></div>
 
-    
+            <!-- show address components -->
+            <div id="address-components"></div>
+    </div>
+
     <script>
 
         // call geocode()
@@ -42,18 +46,46 @@
                 // log full response
                 console.log(response);
 
+                // Formatted Address
+
                 // get formatted address
-                var formattedAddress = response.data.results[0].formatted_address
+                var formattedAddress = response.data.results[0].formatted_address;
 
                 // add to html element
                 var formattedAddressOutput = `
                     <ul class="list-group">
-                        <li class="list-group-item">${formattedAddress}</lli>
+                        <li class="list-group-item">${formattedAddress}</li>
                     </ul>
                 `;
 
                 // output to page
                 document.getElementById('formatted-address').innerHTML = formattedAddressOutput;
+
+                
+                // Address Components
+
+                // get address components
+                var addressComponents = response.data.results[0].address_components;
+
+                // add to html element
+                var addressComponentsOutput = '<ul class="list-group">';
+                
+                // loop through addressComponents
+                for(var i = 0; i < addressComponents.length; i++){
+
+                    // get data from current item
+                    addressComponentsOutput += `
+                        <li class="list-group-item">
+                            <strong>${addressComponents[i].types[0]}</strong>: ${addressComponents[i].long_name}
+                        </li>
+                    `;
+                }
+
+                // append closing html tag
+                addressComponentsOutput += '</ul>';
+
+                // output to page
+                document.getElementById('address-components').innerHTML = addressComponentsOutput;
 
             })
             .catch(function(error){ // handle errors
